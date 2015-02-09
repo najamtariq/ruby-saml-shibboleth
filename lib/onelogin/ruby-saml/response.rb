@@ -40,6 +40,7 @@ module Onelogin
           node = REXML::XPath.first(document, "/p:Response/a:Assertion[@ID='#{document.signed_element_id}']/a:Subject/a:NameID", { "p" => PROTOCOL, "a" => ASSERTION })
           node ||=  REXML::XPath.first(document, "/p:Response[@ID='#{document.signed_element_id}']/a:Assertion/a:Subject/a:NameID", { "p" => PROTOCOL, "a" => ASSERTION })
           node ||=  REXML::XPath.first(document, '//saml2:NameID')
+          node ||=  REXML::XPath.first(document, '//NameID')
           node.nil? ? nil : node.text
         end
       end
